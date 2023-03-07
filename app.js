@@ -29,11 +29,13 @@ app.use("/upload", uploadRouter);
 // 全局错误中间件无法捕获404页面，需要单独处理
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
+  console.log(2222, createError(404));
   next(createError(404));
 });
 
 // 全局错误中间件
 app.use(function (err, req, res, next) {
+  console.log(1111, err);
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
