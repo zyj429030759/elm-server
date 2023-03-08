@@ -16,7 +16,7 @@ app.set("view engine", "pug");
 app.use(logger("dev"));
 // 解析application/json格式的请求体
 app.use(express.json());
-// 解析application/x-www-form-urlencoder格式的请求体
+// 解析application/x-www-form-urlencoder格式的【原生的form表单】请求体，(中文或特殊字符会转码)请求格式：k1=v1&k2=v1
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 // 设置静态文件夹为public

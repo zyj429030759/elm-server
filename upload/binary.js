@@ -1,7 +1,7 @@
 const uploadConfig = require("./config");
-const { ExtError, SizeLimitError } = require("./errorTypes");
+const { ExtError, SizeLimitError } = require("./errorType");
 
-module.exports = (req, req, next) => {
+module.exports = (req, res, next) => {
   // 验证后缀
   let ext = req.get("x-ext");
   ext = ext && ext.toLowerCase();

@@ -29,7 +29,7 @@ const handleFile = async (file, req) => {
 module.exports = (req, res, next) => {
   upload.array("photos", uploadConfig.countLimit)(req, res, async (err) => {
     if (err instanceof multer.MulterError) {
-      const { SizeLimitError, CountLimitError } = require("./errorTypes");
+      const { SizeLimitError, CountLimitError } = require("./errorType");
       if (err.message === "File too large") {
         err = new SizeLimitError();
       } else {
