@@ -16,7 +16,7 @@ app.set("view engine", "pug");
 app.use(logger("dev"));
 // 解析application/json格式的请求体
 app.use(express.json());
-// 解析application/x-www-form-urlencoder格式的【原生的form表单】请求体，(中文或特殊字符会转码)请求格式：k1=v1&k2=v1
+// 解析application/x-www-form-urlencoder格式的[原生的form表单请求体]，(中文或特殊字符会转码)请求格式：k1=v1&k2=v1
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 // 设置静态文件夹为public
@@ -24,18 +24,16 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 
 // 设置路由
 app.use("/", indexRouter);
-app.use("/upload", uploadRouter);
+app.use("/api/upload", uploadRouter);
 
 // 全局错误中间件无法捕获404页面，需要单独处理
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  console.log(2222, createError(404));
   next(createError(404));
 });
 
 // 全局错误中间件
 app.use(function (err, req, res, next) {
-  console.log(1111, err);
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
