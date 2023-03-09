@@ -31,3 +31,12 @@ exports.suffix = (originalname, curName) => {
   }
   return `${curName}${ext}`;
 };
+
+// 文件处理,返回URL地址
+exports.handleFile = async (file, req) => {
+  const filename = this.suffix(file.originalname, file.filename);
+  const fs = require("fs");
+  await fs.promises.rename(file.path, `${file.destination}/${filename}`);
+  const url = this.generateUrl(req, filename);
+  return url;
+};

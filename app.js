@@ -34,6 +34,14 @@ app.use(function (req, res, next) {
 
 // 全局错误中间件
 app.use(function (err, req, res, next) {
+  const { UploadError } = require("./upload/errorType");
+  if (err instanceof UploadError) {
+    res.status(400).send({
+      code: err.code,
+      msg: err.message,
+    });
+    return;
+  }
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
