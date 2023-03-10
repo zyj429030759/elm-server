@@ -26,10 +26,8 @@ module.exports = (req, res, next) => {
   const stream = fs.createWriteStream(filepath);
   req.pipe(stream);
   stream.on("finish", () => {
-    res
-      .send({
-        data: generateUrl(req, filename),
-      })
-      .end();
+    res.send({
+      data: generateUrl(req, filename),
+    });
   });
 };

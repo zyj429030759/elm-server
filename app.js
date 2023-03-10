@@ -15,9 +15,9 @@ app.set("view engine", "pug");
 // 日志格式为dev模式
 app.use(logger("dev"));
 // 解析application/json格式的请求体
-app.use(express.json());
+app.use(express.json({ limit: "50Mb" }));
 // 解析application/x-www-form-urlencoder格式的[原生的form表单请求体]，(中文或特殊字符会转码)请求格式：k1=v1&k2=v1
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false, limit: "50Mb" }));
 // app.use(cookieParser());
 // 设置静态文件夹为public
 app.use("/public", express.static(path.join(__dirname, "public")));
